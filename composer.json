@@ -1,0 +1,17 @@
+{
+  "name": "jinraynor/utils",
+  "description": "small class utilities",
+  "license": "MIT",
+  "keywords": ["jinraynor1","utils"],
+  "authors": [
+    {
+      "name": "Jimmy Atauje"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Jinraynor1\\Utils\\": "src"
+    }
+  }
+}
