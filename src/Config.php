@@ -11,23 +11,6 @@ class Config
         $this->config =  $this->readConfig($config_directory);
     }
 
-    public function get( $path, $default = null)
-    {
-        $current = $this->config;
-
-        $p = strtok($path, '.');
-
-        while ($p !== false) {
-            if (!isset($current[$p])) {
-                return $default;
-            }
-            $current = $current[$p];
-            $p = strtok('.');
-        }
-
-        return $current;
-    }
-
     /**
      * Read config files from directory and returns array
      * @param $config_path
@@ -64,6 +47,38 @@ class Config
         return $config;
     }
 
+    public function get( $path, $default = null)
+    {
+        $current = $this->config;
 
+        $p = strtok($path, '.');
+
+        while ($p !== false) {
+            if (!isset($current[$p])) {
+                return $default;
+            }
+            $current = $current[$p];
+            $p = strtok('.');
+        }
+
+        return $current;
+    }
+
+    public function set($path, $value)
+    {
+        $nested = array();
+        $parts = explode('.', $path);
+
+        $temp = &$nested;
+        foreach ($parts as $part) {
+
+            $temp = &$temp[$part];
+        }
+
+        $temp = $value;
+
+        return $nested;
+
+    }
 
 }
